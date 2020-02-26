@@ -1,0 +1,161 @@
+/* Remove the navbar's default margin-bottom and rounded borders */
+
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+
+.row.content {
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+/* Set gray background color and 100% height */
+
+.sidenav {
+    flex: 1;
+    background-color: #f1f1f1;
+    height: 100%;
+    padding-bottom: 100%;
+    margin-bottom: -100%;
+}
+
+/* Set black background color, white text and some padding */
+
+footer {
+  background-color: #555;
+  color: white;
+  padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {
+    height: auto;
+  }
+}
+
+< !––-----------------------------------------------------------––>
+body {
+  padding: 20px;
+  font-family: Helvetica;
+}
+
+.driver {
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid black;
+    height: 35px;
+    font-size: 15px;
+    padding-top: 7px;
+    padding-left: 7px;
+    text-align: left;
+    background-color: white;
+}
+.driver:hover {
+    cursor: pointer;
+}
+#add-button {
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid black;
+    height: 35px;
+    font-size: 15px;
+    padding-top: 6px;
+    padding-left: 15px;
+    text-align: left;
+    border-radius: 25px;
+    background-color: white;
+    font-weight: bold;
+}
+
+#add-button:hover {
+    cursor: pointer;
+}
+
+#add-driver {
+    border-top: none;
+    height: 67px;
+    width: 100%;
+    padding: 7px;
+    border: 1px solid black;
+    border-top: none;
+    background-color: white;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+
+}
+
+#remove-button {
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid black;
+    height: 35px;
+    font-size: 15px;
+    border-radius: 25px;
+    padding-top: 6px;
+    padding-left: 15px;
+    text-align: left;
+    background-color: white;
+    font-weight: bold;
+}
+
+#remove-button:hover {
+    cursor: pointer;
+}
+#remove-driver {
+    border-top: none;
+    height: 67px;
+    width: 100%;
+    padding: 7px;
+    border: 1px solid black;
+    border-top: none;
+    background-color: white;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+.knapp {
+    float: left;
+    font-size: 10px;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+.order {
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid black;
+    height: 62px;
+    font-size: 15px;
+    padding-top: 7px;
+    padding-left: 12px;
+    text-align: left;
+    background-color: white;
+}
+.order:hover {
+    cursor: pointer;
+}
+
+#confirm-button {
+    width: 100%;
+    margin-top: 5px;
+    border: 1px solid black;
+    height: 35px;
+    font-size: 15px;
+    padding-top: 6px;
+    padding-left: 15px;
+    text-align: left;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 25px;
+}
+
+#confirm-button:hover {
+    cursor: pointer;
+}
+#page {}

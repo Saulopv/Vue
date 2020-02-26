@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Arbetsledare</title>
+  <link rel="icon" href="https://static.thenounproject.com/png/20389-200.png">
+  <link rel="stylesheet" href="/leaflet/leaflet.css">
+  <link rel="stylesheet" href="css/shared.css">
+  <link rel="stylesheet" href="css/dispatcher.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <script src="/vue/vue.js"></script>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/leaflet/leaflet.js"></script>
+  <script src="js/dispatcher.js" defer></script>
+</head>
+<body>
+  <div id="page">
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">LeveranzO</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Kund</a></li>
+            <li class="active"><a href="#">Arbetsledare</a></li>
+            <li><a href="/driver">Förare</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid text-center">
+      <div class="row content">
+        <div class="col-sm-2 sidenav">
+          <br>
+          <div class="driver" v-for="driver in drivers" v-on:click="showDriver(driver)">
+            #{{ driver.driverId}} | {{ driver.driverName }}
+          </div>
+          <br>
+          <br>
+          <div id="add-button" v-on:click="showAddDriver">
+            Lägg till förare
+          </div>
+          <div id="add-driver" style="display: none">
+            <input type="text" id="addedName" placeholder="Förarens Namn" maxlength="10" />
+            <button class="knapp" v-on:click="addDriver">Lägg till!</button>
+            <br>
+          </div>
+          <div id="remove-button" v-on:click="showRemoveDriver">
+            Ta bort förare
+          </div>
+          <div id="remove-driver" style="display: none">
+            <input type="text" id="removedName" placeholder="Förarens ID" maxlength="10" />
+            <button class="knapp" v-on:click="removeDriver">Ta bort!</button>
+            <br>
+          </div>
+          <br>
+        </div>
+        <div class="col-sm-8 text-left">
+          <div id="my-map"></div>
+        </div>
+        <div class="col-sm-2 sidenav">
+          <br>
+          <div class="order" v-for="order in orders" v-on:click="showOrder(order)">
+            Order #{{ order.orderId }}
+            <select v-on:change="addAssignedDriver(order)" v-model="order.driverId">
+              <option disabled value="">Ge till förare</option>
+              <option v-for="driver in drivers" :value="driver.driverId"># {{ driver.driverName}}</option>
+            </select>
+          </div>
+          <br>
+          <div id="confirm-button" v-if="driversAssigned.length != 0" v-on:click="assignDrivers">
+            Tilldela varor
+          </div>
+          <div id="confirm-button" v-if="driversAssigned.length != 0" v-on:click="cancelAssign">
+            Avbryt
+          </div>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="container-fluid text-center">
+    <p></p>
+  </footer>
+</body>
+</html>

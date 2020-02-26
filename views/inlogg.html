@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inlogg</title>
+    <link rel="icon" href="https://static.thenounproject.com/png/20389-200.png">
+    <link rel="stylesheet" href="/leaflet/leaflet.css">
+    <link rel="stylesheet" href="/esri-leaflet-geocoder/esri-leaflet-geocoder.css">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="/vue/vue.js"></script>
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="js/inlogg.js" defer></script>
+</head>
+<body>
+<div id="page">
+    <nav class="navbar navbar-inverse">
+        <a class="navbar-brand" href="/">LeveranzO</a>
+    </nav>
+</div>
+
+<div id="urls" align="center">
+<h3>Välkommen</h3>
+    <p>Välj alternativ</p>
+    <br>
+            <button class="button"  @click="goToEvents(url1)" >Ny beställning</button><br>
+            <button class="button">Mina sidor</button><br>
+            <button class="button" @click="goToEvents(url3)" >Chaufför</button><br>
+            <button class="button" @click="goToEvents(url4)" >Arbetsledare</button><br>
+            <button class="button">Reklamation</button><br>
+</div>
+
+</body>
+</html>

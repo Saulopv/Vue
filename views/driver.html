@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Driver</title>
+    <link rel="stylesheet" href="/leaflet/leaflet.css">
+
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="css/driver.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="/vue/vue.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/leaflet/leaflet.js"></script>
+    <script src="js/driver.js" defer></script>
+</head>
+<body>
+<div id="page">
+<nav class="navbar navbar-inverse">   <h4 style="color:grey;">LeveranzO</h4>
+
+</nav>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+            <div class="panel panel-info">
+            <div class="panel panel-heading"><h4>Välj förare # <input type="textfield" v-bind:placeholder="driverId" id="Driver"/></h4>
+              <button id="Driver" v-on:click= "updateId">Bekräfta </button>
+            </div>
+            <table class="fixed_header" style="width:100%">
+
+                    <thead>
+                      <tr>
+                        <th>Order</th>
+                        <th>Leveransstatus</th>
+                        <th>Info</th>
+                        <th>Välj</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                            <tr v-for="order in orders" v-if="order.driverId == driverId && !order.delivered" style="background-color:white">
+                                <td style="padding-left: 7px"># {{ order.orderId}} </td>
+                                <td>Ej levererad</td>
+                                <td>{{ order.expressOrAlreadyProcessed ? "Express" : "Normal" }}</td>
+                                <td><input type="checkbox" v-model="order.checked"></td>
+                                
+                              </tr>
+  
+                              <tr v-for="order in orders" v-if="order.driverId == driverId && order.delivered" style="background-color: rgb(62, 142, 168)">
+                              <td style="padding-left: 7px"># {{ order.orderId}} </td>     
+                                <td>Levererad</td>
+                                <td>{{ order.expressOrAlreadyProcessed ? "Express" : "Normal" }}</td>
+                                <td><input type="checkbox" onclick="return false;" checked></td>
+                              </tr>
+
+                          </tbody>
+                </table>
+
+                <p class="popup">
+                    <br>
+                    <br>
+                        <button type="button" class="btn btn-success" v-on:click="markComplete" style="height:50px;width:100px">Leverera</button>
+                    </p>
+
+            <div class="panel panel-body">
+
+
+                    <div id="my-map"></div>
+                    <br>
+                    <div v-if="driverLocation">Utilized capacity: {{ usedCapacity }}/{{ maxCapacity }}</div>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<footer class="container-fluid text-center">
+    <p>LeveranzO</p>
+</footer>
+
+</div>
+<script>
+        function confirmationFunc() {
+          if (confirm("Vill du leverera denna order?")) {
+            return true;
+          } else {
+            return false;
+          }
+        }
+    </script>
+</body>
+</html>

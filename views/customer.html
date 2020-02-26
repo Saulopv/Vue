@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Leveransadress</title>
+    <link rel="stylesheet" href="/leaflet/leaflet.css">
+    <link rel="stylesheet" href="/esri-leaflet-geocoder/esri-leaflet-geocoder.css">
+    <link rel="stylesheet" href="css/shared.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="/vue/vue.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/leaflet/leaflet.js"></script>
+    <script src="/esri-leaflet/esri-leaflet.js"></script>
+    <script src="/esri-leaflet-geocoder/esri-leaflet-geocoder.js"></script>
+    <script src="js/customer.js" defer></script>
+</head>
+<body>
+<div id="page">
+<nav class="navbar navbar-inverse">
+    <a class="navbar-brand" href="#">LeveranzO</a>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="item"><span class="glyphicon glyphicon-arrow-left"></span></a></li>
+        <li><a><span></span> </a></li>
+    </ul>
+</nav>
+<div class="container-fluid text-center">
+    <div class="row content">
+        <div class="col-sm-2 sidenav">
+            <div class="panel panel-info">
+            <div class="panel panel-heading"><h4><span class="label label-info" style="color: white">Personlig information</span></h4></div>
+            <div class="panel panel-body">
+            <form class="input-group-small" >
+                <p>
+                    <span class="glyphicon glyphicon-user"></span>
+                    <input class="form-control"
+                           type="text" id="time"
+                           name="time" required="required"
+                           placeholder="Namn"
+                           value=""
+                           v-model="dinfo.name"><br>
+                </p>
+                <p>
+                    <span class="glyphicon glyphicon-envelope"></span>
+                    <input class="form-control" type="text"
+                           id="email" name="email" required="required"
+                           placeholder="Email"
+                           value=""
+                           v-model="dinfo.email"
+                    ><br>
+                </p>
+            </form>
+            </div>
+            </div>
+        </div>
+        <div class="col-sm-8 text-left">
+            <h1><span class="label label-default" style="color: white">Leveransadress</span></h1>
+            <p>Välj upphämtningsplats först, sedan destination.</p>
+            <div>
+                <div id="my-map"></div>
+                <br>
+            </div>
+        </div>
+        <div class="col-sm-2 sidenav">
+            <div class="panel panel-info">
+                <div class="panel-heading"><h4><span class="label label-info" >Din order</span></h4></div>
+                <div  style="overflow: auto;text-overflow: clip; white-space: nowrap; font-size: small" class="panel-body">
+                    <span style="text-decoration: underline;">Antal</span><p style=" font-family: monospace">{{ goodsInfo.amount }}</p>
+                    <span style="text-decoration: underline;">Vikt</span><p style=" font-family: monospace">{{ goodsInfo.weight }}</p>
+                    <span style="text-decoration: underline;">Storlek</span><p style=" font-family: monospace">{{ goodsInfo.size }}</p>
+                    <span style="text-decoration: underline;">Express</span><p style=" font-family: monospace" >{{ goodsInfo.fragile }}</p>
+                    <span style="text-decoration: underline;">Kommentar</span><p style=" font-family: monospace">{{ goodsInfo.driverInstructions }}</p>
+                    <!--<p v-if="express"><span class="glyphicon glyphicon-plane"></span></p><p v-else><br></p>-->
+                </div>
+
+            </div>
+            <br>
+            <div class="well">
+                <p class="popup">
+                    <span class="popuptext" id="myPopup">Tack och välkommen åter! </span><br>
+                    <button type="button" class="btn btn-success" v-on:click="placeOrder">Lägg order</button>
+                </p>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<footer class="container-fluid text-center">
+    <p>LeveranzO</p>
+</footer>
+
+</body>
+</html>

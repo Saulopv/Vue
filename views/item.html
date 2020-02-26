@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Item</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://static.thenounproject.com/png/20389-200.png">
+    <link rel="stylesheet" type="text/html" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/html" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/html" href="vendor/animate/animate.css">
+    <link rel="stylesheet" type="text/html" href="vendor/css-hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" type="text/html" href="vendor/animsition/css/animsition.min.css">
+    <link rel="stylesheet" type="text/html" href="vendor/select2/select2.min.css">
+    <link rel="stylesheet" type="text/html" href="vendor/daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" type="text/css" href="css/util.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="/leaflet/leaflet.css">
+    <link rel="stylesheet" href="/esri-leaflet-geocoder/esri-leaflet-geocoder.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="/vue/vue.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/leaflet/leaflet.js"></script>
+    <script src="/esri-leaflet/esri-leaflet.js"></script>
+    <script src="/esri-leaflet-geocoder/esri-leaflet-geocoder.js"></script>
+    <link rel="stylesheet" href="css/shared.css">
+    <script src="https://vuejs.org/js/vue.js"></script>
+    <script src="js/item.js" defer></script>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">LeveranzO</a>
+        </div>
+</nav>
+
+<div id="item">
+    <p>
+        <label id="amount">Antal</label><img class="img" v-bind:src="url" title="Antal paket som skall levereras."><br>
+        <input class="input100" v-model="goodsInfo.amount" type="text" name="Amount" required="required" placeholder="Antal">
+    </p>
+    <p>
+        <label id="weight">Vikt</label><img class="img" v-bind:src="url" title="Vikt i kg."><br>
+        <input class="input100" v-model="goodsInfo.weight" type="text" name="Weight" required="required" placeholder="Vikt">
+    </p>
+    <p>
+        <label id="measure">Storlek</label><img class="img" v-bind:src="url" title="Small: 0.5m, Medium: 1m, Large: 2m"><br>
+        <select class="input100" v-model="goodsInfo.size" name="Storlek" required="required" placeholder="Storlek">
+        <option>Small</option>
+        <option>Medium</option>
+        <option>Large</option>
+        </select>
+    </p>
+    <p>
+        <label id="fragile">Express</label><img class="img" v-bind:src="url" title="Express kostar 350kr extra och levereras samma dag."><br>
+        <select class="input100" v-model="goodsInfo.fragile" name="Ömtåligt">
+            <option>Ja</option>
+            <option selected="selected">Nej</option>
+        </select>
+    </p>
+    <p>
+        <label id="comment">Kommentar</label><img class="img" v-bind:src="url" title="Önskemål eller information att dela med chauffören."><br>
+        <div>
+            <textarea v-model="goodsInfo.driverInstructions" class="input100" name="message" placeholder="Skriv kommentar här.."></textarea>
+        </div>
+    </p>
+    <div class="grid">
+        <div>
+        </div>
+
+        <div class="container-contact100-form-btn">
+            <button class="contact100-form-btn">
+						<span>
+							<i aria-hidden="true"></i>
+							<a class="navbar-brand" id="next-button" v-on:click="sendInfo" href="customer"> Next </a>
+						</span>
+            </button>
+        </div>
+    </div>
+</div>
+</body>
+</html>
